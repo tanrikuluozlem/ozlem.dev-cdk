@@ -1,0 +1,37 @@
+name: Deploy to CDK
+
+on: [push]
+
+jobs:
+  aws_cdk:
+    runs-on: ubuntu-latest
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: 'us-east-1'
+
+
+    steps:
+
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v2
+
+    
+      - name: cdk diff
+        uses: youyo/aws-cdk-github-actions@v1
+        with:
+          cdk_subcommand: 'diff'
+          actions_comment: true
+      
+
+      - name: cdk deploy
+        uses: youyo/aws-cdk-github-actions@v1
+        with:
+          cdk_subcommand: 'deploy'
+          cdk_stack: 'stack1'
+          actions_comment: false
+          args: '--require-approval never'
+        
+
+     
