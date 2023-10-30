@@ -4,6 +4,12 @@ jobs:
   aws_cdk:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout the files
+        uses: actions/checkout@v3
+      
+      - name: install node dependencies
+        uses: bahmutov/npm-install@v1
+
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
