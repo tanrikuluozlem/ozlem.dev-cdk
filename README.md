@@ -1,14 +1,16 @@
-# Welcome to your CDK TypeScript project
+# ozlem.dev-cdk
 
-This is a blank project for CDK development with TypeScript.
+CDK app that deploys the infrastructure needed to serve my static blog.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Components
 
-## Useful commands
+**S3 Bucket**: This acts as the origin and serves my static blog content.
+**CloudFront Distribution**: The CF distribution caches my content on the edge and forwards requests to my origin bucket when necessary.
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+
+## Deploy
+
+When you made changes to the CDK app you can deploy those changes via invoking the below command.
+```bash
+$ cdk deploy --all --profile <aws profile name>
+```
